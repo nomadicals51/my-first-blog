@@ -1,6 +1,8 @@
 
 {% load staticfiles %}
 
+{% load link_list %}
+{% get_link_list "blogroll" as links, category %}
 <html>
   <head>
       <title>Nomadic American Labs Django Blog</title>
@@ -27,6 +29,18 @@
 	        {% endblock %}
 	        </div>  
 	    </div>
-	</div>  
+	</div>
+       {% if links %}{# if I don't have any links, I won't show anything #}
+           <div class="module">
+              <h3 class="title">{{ category.title }}</h3>{# Showing the name of the category #}
+	      <ul>
+	      {% for link in links %}{# Let's get link by link and create a href element #}
+	         <li>
+		   <a href="{{ link.ref }}" title="{{ link.description }}">{{ link.title }}</a>
+		 </li>
+              {% endfor %}
+              </ul>
+           </div>
+        {% endif %}
     </body>
 </html>
