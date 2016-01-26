@@ -1,5 +1,6 @@
 
 {% extends 'blog/base.html' %}
+{% load markup%}
 
 {% block content %}
 
@@ -18,7 +19,7 @@
 	    <a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>    
 	{% endif %}
 	<h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaks }}</p>
+        <p>{{ post.text|markdown }}</p>
     </div>
     <hr>
     <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
