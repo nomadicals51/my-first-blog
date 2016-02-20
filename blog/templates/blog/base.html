@@ -1,15 +1,14 @@
 
 {% load staticfiles %}
 
-{% load link_list %}
-{% get_link_list "blogroll" as links, category %}
 <html>
   <head>
       <title>Nomadic American Labs Django Blog</title>
       <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
       <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
       <link rel="stylesheet" href="{% static 'css/blog.css' %}"> 
-      <link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+      <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
+      #<link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   </head>
     <body>
         <div class="page-header">
@@ -30,17 +29,25 @@
 	        </div>  
 	    </div>
 	</div>
-       {% if links %}{# if I don't have any links, I won't show anything #}
-           <div class="module">
-              <h3 class="title">{{ category.title }}</h3>{# Showing the name of the category #}
-	      <ul>
-	      {% for link in links %}{# Let's get link by link and create a href element #}
-	         <li>
-		   <a href="{{ link.ref }}" title="{{ link.description }}">{{ link.title }}</a>
-		 </li>
-              {% endfor %}
-              </ul>
-           </div>
-        {% endif %}
+
+{% load link_list %}
+
+{% get_link_list "blogroll" as links, category %}
+{% if links %}
+    <div class="module">
+        <h3 class="title">{{ category.title }}</h3>
+        <ul>
+            {% for link in links %}
+                <li>
+                    <a href="{{ link.href }}"
+                    title="{{ link.description }}">{{ link.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+	
+	
     </body>
 </html>
+
