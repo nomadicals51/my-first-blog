@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'markup_deprecated',
+    'simple_links',
+    'google_analytics',
     'blog',
 ]
 
@@ -51,6 +54,10 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+GOOGLE_ANALYTICS = {
+    'google_analytics_id': 'UA-15530314-4',
+}
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
